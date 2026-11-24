@@ -14,6 +14,7 @@ class Note(models.Model):
     receipt = models.CharField(max_length=64, blank=True, default="")
 
     def make_receipt(self):
+        # Including the owner and note IDs ties the receipt to this particular note.
         fields = [self.pk, self.owner_id, self.title, self.body]
         payload = json.dumps(fields, ensure_ascii=False)
         return salted_hmac("study-notes.receipt.v1", payload, secret=settings.NOTE_RECEIPT_KEY,
