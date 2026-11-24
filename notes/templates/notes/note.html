@@ -1,0 +1,10 @@
+{% extends "notes/base.html" %}
+{% block title %}{{ note.title }} · Study Notes{% endblock %}
+{% block content %}
+<p><a href="{% url 'notebook' %}">Back to notebook</a></p>
+<article class="card"><h1>{{ note.title }}</h1>
+  <time>{{ note.created|date:"d M Y" }}</time>
+  <p class="bodytext">{{ note.body }}</p>
+</article>
+<section class="card narrow"><h2>Save receipt</h2><p>{{ status }}</p></section>
+{% endblock %}

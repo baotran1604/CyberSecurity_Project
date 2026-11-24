@@ -1,0 +1,14 @@
+{% extends "notes/base.html" %}
+{% block content %}
+<h1>Account activity</h1>
+<section class="card narrow">
+  <h2>Recent activity for {{ user.username }}</h2>
+  <ul class="entries">
+    {% for event in events %}
+      <li>{{ event.get_kind_display }} &middot; <time>{{ event.created|date:"Y-m-d H:i:s" }} UTC</time></li>
+    {% empty %}
+      <li>No account activity yet.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
